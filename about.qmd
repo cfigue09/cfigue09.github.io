@@ -1,0 +1,24 @@
+---
+title: "About"
+---
+
+## Background
+
+I was born and raised in Barranquilla, Colombia, and studied public accounting at
+Universidad del Norte before moving to Vancouver. I later completed a diploma in
+accounting at BCIT and spent six years working in the field here, mostly in
+accounts receivable, corporate services, and month-end close.
+
+## Why data science
+
+Accounting gave me a lot of time with messy data and very little time with the
+questions I actually wanted to ask of it. I kept building spreadsheets that were
+really analyses in disguise, and eventually started learning SQL and Python on my
+own to do the job properly. The MDS program is the deliberate version of that
+detour: I want to move from reporting what happened to explaining why, and from
+static reports to tools other people can use.
+
+## Outside of data science
+
+I play recreational soccer whenever I can find a game, and most of my weekends
+involve some combination of football, cooking, and walking around Vancouver.
