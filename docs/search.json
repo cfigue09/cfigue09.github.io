@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "Blog",
+    "section": "",
+    "text": "My first weeks in MDS\n\n\n\n\n\n\n\n\nSep 13, 2026\n\n\nMauricio Figueroa\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Mauricio Figueroa",
+    "section": "",
+    "text": "I am a Master of Data Science student at the University of British Columbia, and before that I spent six years as an accountant in Vancouver. I grew up in Barranquilla, Colombia, studied public accounting at Universidad del Norte, and moved to Canada to keep building on that work. Years of closing books and chasing down numbers that did not add up taught me that the interesting part was never the reconciliation itself, but the question underneath it. I am here to learn how to answer those questions properly, with data."
+  },
+  {
+    "objectID": "posts/first-weeks/index.html",
+    "href": "posts/first-weeks/index.html",
+    "title": "My first weeks in MDS",
+    "section": "",
+    "text": "Classes started on August 31st, and the first thing I noticed was the pace. Four courses running at once, lectures in the morning and labs every afternoon at two, and a new topic arriving before the previous one has finished settling. Coming from six years of accounting, where the calendar is built around a monthly close I could see coming from a week away, this is a different rhythm entirely.\n\n\n\nCampus during my first weeks in the MDS program.\n\n\nThe surprise has not been the statistics or the programming. It has been how much of the work is infrastructure: SSH keys, version control, rendering pipelines, getting four different tools to agree on where a file lives. I spent part of a weekend on an SSH connection that timed out over and over, and the fix turned out to have nothing to do with my key. That was frustrating at the time and useful in retrospect, because nobody hands you a working environment in real work either.\nRight now I feel busy and slightly behind, which I gather is the normal state here. What I am looking forward to is the point where the tools stop being the obstacle and become the thing I reach for without thinking about it."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "I was born and raised in Barranquilla, Colombia, and studied public accounting at Universidad del Norte before moving to Vancouver. I later completed a diploma in accounting at BCIT and spent six years working in the field here, mostly in accounts receivable, corporate services, and month-end close."
+  },
+  {
+    "objectID": "about.html#background",
+    "href": "about.html#background",
+    "title": "About",
+    "section": "",
+    "text": "I was born and raised in Barranquilla, Colombia, and studied public accounting at Universidad del Norte before moving to Vancouver. I later completed a diploma in accounting at BCIT and spent six years working in the field here, mostly in accounts receivable, corporate services, and month-end close."
+  },
+  {
+    "objectID": "about.html#why-data-science",
+    "href": "about.html#why-data-science",
+    "title": "About",
+    "section": "Why data science",
+    "text": "Why data science\nAccounting gave me a lot of time with messy data and very little time with the questions I actually wanted to ask of it. I kept building spreadsheets that were really analyses in disguise, and eventually started learning SQL and Python on my own to do the job properly. The MDS program is the deliberate version of that detour: I want to move from reporting what happened to explaining why, and from static reports to tools other people can use."
+  },
+  {
+    "objectID": "about.html#outside-of-data-science",
+    "href": "about.html#outside-of-data-science",
+    "title": "About",
+    "section": "Outside of data science",
+    "text": "Outside of data science\nI play recreational soccer whenever I can find a game, and most of my weekends involve some combination of football, cooking, and walking around Vancouver."
+  }
+]
