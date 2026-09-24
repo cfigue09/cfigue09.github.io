@@ -7,7 +7,7 @@ jupyter: python3
 
 ## Question
 
-How does body mass vary across Adelie, Chinstrap, and Gentoo penguins?
+How does body mass vary across Adelie, Chinstrap, and Gentoo penguins??? Hmm let's see.
 
 ## Data source
 

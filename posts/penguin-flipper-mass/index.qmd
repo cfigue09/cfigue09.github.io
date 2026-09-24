@@ -7,7 +7,7 @@ engine: knitr
 
 ## Question
 
-Do penguins with longer flippers tend to have greater body mass?
+Do penguins with longer flippers tend to have greater body mass? You wouldn't be surprise once you know the answer. 
 
 ## Data source
 
