@@ -1,0 +1,101 @@
+---
+title: "Penguin flipper length and body mass"
+author: "Cesar Figueroa"
+date: 2026-09-24
+engine: knitr
+---
+
+## Question
+
+Do penguins with longer flippers tend to have greater body mass?
+
+## Data source
+
+Data: [Palmer Penguins](https://allisonhorst.github.io/palmerpenguins/),
+collected by Dr. Kristen Gorman and Palmer Station Antarctica LTER.
+The data are available under a CC0 license.
+
+## Load the data
+
+```{r}
+#| label: load-penguins
+#| message: false
+
+library(palmerpenguins)
+head(penguins)
+```
+
+## Check data quality
+
+I check for missing values in flipper length and body mass before
+examining their relationship.
+
+```{r}
+#| label: check-missing-values
+
+measurements <- penguins[c("flipper_length_mm", "body_mass_g")]
+
+nrow(measurements)
+colSums(is.na(measurements))
+```
+
+## Prepare the data
+
+I retain observations with both flipper length and body mass available.
+Missing values in other variables do not affect this selection.
+
+```{r}
+#| label: remove-missing-measurements
+
+measurements_clean <- measurements[complete.cases(measurements), ]
+
+nrow(measurements_clean)
+nrow(measurements) - nrow(measurements_clean)
+```
+
+## Visualize the relationship
+
+Each point represents one penguin with both measurements available.
+
+```{r}
+#| label: fig-flipper-mass
+#| fig-cap: "Flipper length and body mass for 342 penguins with complete measurements."
+
+plot(
+  measurements_clean$flipper_length_mm,
+  measurements_clean$body_mass_g,
+  xlab = "Flipper length (mm)",
+  ylab = "Body mass (g)",
+  pch = 19,
+  col = "steelblue"
+)
+```
+
+## Measure the association
+
+I calculate Pearson's correlation to summarize the linear association
+between flipper length and body mass.
+
+```{r}
+#| label: calculate-correlation
+
+correlation <- cor(
+  measurements_clean$flipper_length_mm,
+  measurements_clean$body_mass_g
+)
+
+round(correlation, 3)
+```
+
+## Findings :O
+
+Among the 342 penguins with both measurements available, flipper
+length and body mass have a Pearson correlation of 0.871. This
+indicates a strong positive linear association, consistent with
+the upward pattern in @fig-flipper-mass.
+
+This analysis combines three species. Differences between species
+may contribute to the overall association, so the result does not
+necessarily describe the relationship within each species.
+Correlation does not establish that longer flippers cause greater
+body mass. Two observations with missing measurements were excluded.
