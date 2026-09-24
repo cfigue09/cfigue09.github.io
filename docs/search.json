@@ -4,7 +4,7 @@
     "href": "blog.html",
     "title": "Blog",
     "section": "",
-    "text": "My first weeks in MDS\n\n\n\n\n\n\n\n\nSep 13, 2026\n\n\nCesar Figueroa\n\n\n\n\n\nNo matching items"
+    "text": "Penguin flipper length and body mass\n\n\n\n\n\n\n\n\nSep 24, 2026\n\n\nCesar Figueroa\n\n\n\n\n\n\n\n\n\n\n\n\nComparing penguin body mass across species\n\n\n\n\n\n\n\n\nSep 24, 2026\n\n\nCesar Figueroa\n\n\n\n\n\n\n\n\n\n\n\n\nMy first weeks in MDS\n\n\n\n\n\n\n\n\nSep 13, 2026\n\n\nCesar Figueroa\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -14,11 +14,137 @@
     "text": "I am a Master of Data Science student at the University of British Columbia, and before that I spent six years as an accountant in Vancouver. I grew up in Barranquilla, Colombia, studied public accounting at Universidad del Norte, and moved to Canada to keep building on that work. Years of closing books and chasing down numbers that did not add up taught me that the interesting part was never the reconciliation itself, but the question underneath it. I am here to learn how to answer those questions properly, with data."
   },
   {
+    "objectID": "posts/penguin-flipper-mass/index.html",
+    "href": "posts/penguin-flipper-mass/index.html",
+    "title": "Penguin flipper length and body mass",
+    "section": "",
+    "text": "Do penguins with longer flippers tend to have greater body mass?"
+  },
+  {
+    "objectID": "posts/penguin-flipper-mass/index.html#question",
+    "href": "posts/penguin-flipper-mass/index.html#question",
+    "title": "Penguin flipper length and body mass",
+    "section": "",
+    "text": "Do penguins with longer flippers tend to have greater body mass?"
+  },
+  {
+    "objectID": "posts/penguin-flipper-mass/index.html#data-source",
+    "href": "posts/penguin-flipper-mass/index.html#data-source",
+    "title": "Penguin flipper length and body mass",
+    "section": "Data source",
+    "text": "Data source\nData: Palmer Penguins, collected by Dr. Kristen Gorman and Palmer Station Antarctica LTER. The data are available under a CC0 license."
+  },
+  {
+    "objectID": "posts/penguin-flipper-mass/index.html#load-the-data",
+    "href": "posts/penguin-flipper-mass/index.html#load-the-data",
+    "title": "Penguin flipper length and body mass",
+    "section": "Load the data",
+    "text": "Load the data\n\nlibrary(palmerpenguins)\nhead(penguins)\n\n  species    island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n1  Adelie Torgersen           39.1          18.7               181        3750\n2  Adelie Torgersen           39.5          17.4               186        3800\n3  Adelie Torgersen           40.3          18.0               195        3250\n4  Adelie Torgersen             NA            NA                NA          NA\n5  Adelie Torgersen           36.7          19.3               193        3450\n6  Adelie Torgersen           39.3          20.6               190        3650\n     sex year\n1   male 2007\n2 female 2007\n3 female 2007\n4   &lt;NA&gt; 2007\n5 female 2007\n6   male 2007"
+  },
+  {
+    "objectID": "posts/penguin-flipper-mass/index.html#check-data-quality",
+    "href": "posts/penguin-flipper-mass/index.html#check-data-quality",
+    "title": "Penguin flipper length and body mass",
+    "section": "Check data quality",
+    "text": "Check data quality\nI check for missing values in flipper length and body mass before examining their relationship.\n\nmeasurements &lt;- penguins[c(\"flipper_length_mm\", \"body_mass_g\")]\n\nnrow(measurements)\n\n[1] 344\n\ncolSums(is.na(measurements))\n\nflipper_length_mm       body_mass_g \n                2                 2"
+  },
+  {
+    "objectID": "posts/penguin-flipper-mass/index.html#prepare-the-data",
+    "href": "posts/penguin-flipper-mass/index.html#prepare-the-data",
+    "title": "Penguin flipper length and body mass",
+    "section": "Prepare the data",
+    "text": "Prepare the data\nI retain observations with both flipper length and body mass available. Missing values in other variables do not affect this selection.\n\nmeasurements_clean &lt;- measurements[complete.cases(measurements), ]\n\nnrow(measurements_clean)\n\n[1] 342\n\nnrow(measurements) - nrow(measurements_clean)\n\n[1] 2"
+  },
+  {
+    "objectID": "posts/penguin-flipper-mass/index.html#visualize-the-relationship",
+    "href": "posts/penguin-flipper-mass/index.html#visualize-the-relationship",
+    "title": "Penguin flipper length and body mass",
+    "section": "Visualize the relationship",
+    "text": "Visualize the relationship\nEach point represents one penguin with both measurements available.\n\nplot(\n  measurements_clean$flipper_length_mm,\n  measurements_clean$body_mass_g,\n  xlab = \"Flipper length (mm)\",\n  ylab = \"Body mass (g)\",\n  pch = 19,\n  col = \"steelblue\"\n)\n\n\n\n\n\n\n\nFigure 1: Flipper length and body mass for 342 penguins with complete measurements."
+  },
+  {
+    "objectID": "posts/penguin-flipper-mass/index.html#measure-the-association",
+    "href": "posts/penguin-flipper-mass/index.html#measure-the-association",
+    "title": "Penguin flipper length and body mass",
+    "section": "Measure the association",
+    "text": "Measure the association\nI calculate Pearson’s correlation to summarize the linear association between flipper length and body mass.\n\ncorrelation &lt;- cor(\n  measurements_clean$flipper_length_mm,\n  measurements_clean$body_mass_g\n)\n\nround(correlation, 3)\n\n[1] 0.871"
+  },
+  {
+    "objectID": "posts/penguin-flipper-mass/index.html#findings-o",
+    "href": "posts/penguin-flipper-mass/index.html#findings-o",
+    "title": "Penguin flipper length and body mass",
+    "section": "Findings :O",
+    "text": "Findings :O\nAmong the 342 penguins with both measurements available, flipper length and body mass have a Pearson correlation of 0.871. This indicates a strong positive linear association, consistent with the upward pattern in Figure 1.\nThis analysis combines three species. Differences between species may contribute to the overall association, so the result does not necessarily describe the relationship within each species. Correlation does not establish that longer flippers cause greater body mass. Two observations with missing measurements were excluded."
+  },
+  {
     "objectID": "posts/first-weeks/index.html",
     "href": "posts/first-weeks/index.html",
     "title": "My first weeks in MDS",
     "section": "",
     "text": "Classes started on August 31st, and the first thing I noticed was the pace. Four courses running at once, lectures in the morning and labs every afternoon at two, and a new topic arriving before the previous one has finished settling. Coming from six years of accounting, where the calendar is built around a monthly close I could see coming from a week away, this is a different rhythm entirely.\n\n\n\nCampus during my first weeks in the MDS program.\n\n\nThe surprise has not been the statistics or the programming. It has been how much of the work is infrastructure: SSH keys, version control, rendering pipelines, getting four different tools to agree on where a file lives. I spent part of a weekend on an SSH connection that timed out over and over, and the fix turned out to have nothing to do with my key. That was frustrating at the time and useful in retrospect, because nobody hands you a working environment in real work either.\nRight now I feel busy and slightly behind, which I gather is the normal state here. What I am looking forward to is the point where the tools stop being the obstacle and become the thing I reach for without thinking about it."
+  },
+  {
+    "objectID": "posts/penguin-body-mass/index.html",
+    "href": "posts/penguin-body-mass/index.html",
+    "title": "Comparing penguin body mass across species",
+    "section": "",
+    "text": "How does body mass vary across Adelie, Chinstrap, and Gentoo penguins?"
+  },
+  {
+    "objectID": "posts/penguin-body-mass/index.html#question",
+    "href": "posts/penguin-body-mass/index.html#question",
+    "title": "Comparing penguin body mass across species",
+    "section": "",
+    "text": "How does body mass vary across Adelie, Chinstrap, and Gentoo penguins?"
+  },
+  {
+    "objectID": "posts/penguin-body-mass/index.html#data-source",
+    "href": "posts/penguin-body-mass/index.html#data-source",
+    "title": "Comparing penguin body mass across species",
+    "section": "Data source",
+    "text": "Data source\nData: Palmer Penguins, collected by Dr. Kristen Gorman and Palmer Station Antarctica LTER. The data are available under a CC0 license."
+  },
+  {
+    "objectID": "posts/penguin-body-mass/index.html#load-the-data",
+    "href": "posts/penguin-body-mass/index.html#load-the-data",
+    "title": "Comparing penguin body mass across species",
+    "section": "Load the data",
+    "text": "Load the data\n\nfrom palmerpenguins import load_penguins\n\npenguins = load_penguins()\npenguins.head()\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\nyear\n\n\n\n\n0\nAdelie\nTorgersen\n39.1\n18.7\n181.0\n3750.0\nmale\n2007\n\n\n1\nAdelie\nTorgersen\n39.5\n17.4\n186.0\n3800.0\nfemale\n2007\n\n\n2\nAdelie\nTorgersen\n40.3\n18.0\n195.0\n3250.0\nfemale\n2007\n\n\n3\nAdelie\nTorgersen\nNaN\nNaN\nNaN\nNaN\nNaN\n2007\n\n\n4\nAdelie\nTorgersen\n36.7\n19.3\n193.0\n3450.0\nfemale\n2007"
+  },
+  {
+    "objectID": "posts/penguin-body-mass/index.html#check-data-quality",
+    "href": "posts/penguin-body-mass/index.html#check-data-quality",
+    "title": "Comparing penguin body mass across species",
+    "section": "Check data quality",
+    "text": "Check data quality\nBefore comparing species, I check the dataset size and count missing values in the variables needed for this analysis.\n\nprint(f\"Number of rows: {penguins.shape[0]}\")\npenguins[[\"species\", \"body_mass_g\"]].isna().sum()\n\nNumber of rows: 344\n\n\nspecies        0\nbody_mass_g    2\ndtype: int64"
+  },
+  {
+    "objectID": "posts/penguin-body-mass/index.html#prepare-the-data",
+    "href": "posts/penguin-body-mass/index.html#prepare-the-data",
+    "title": "Comparing penguin body mass across species",
+    "section": "Prepare the data",
+    "text": "Prepare the data\nTwo observations have missing body mass (Na). I exclude these two rows from the comparison and keep observations with missing values in unrelated columns.\n\npenguins_clean = penguins.dropna(subset=[\"body_mass_g\"]).copy()\n\nprint(f\"Original rows: {len(penguins)}\")\nprint(f\"Rows retained: {len(penguins_clean)}\")\nprint(f\"Rows removed: {len(penguins) - len(penguins_clean)}\")\n\nOriginal rows: 344\nRows retained: 342\nRows removed: 2"
+  },
+  {
+    "objectID": "posts/penguin-body-mass/index.html#compare-body-mass-across-species",
+    "href": "posts/penguin-body-mass/index.html#compare-body-mass-across-species",
+    "title": "Comparing penguin body mass across species",
+    "section": "Compare body mass across species",
+    "text": "Compare body mass across species\nI calculate the number of observations, mean, and median body mass for each species. Body mass is measured in grams.\n\nmass_summary = (\n    penguins_clean.groupby(\"species\")[\"body_mass_g\"]\n    .agg([\"count\", \"mean\", \"median\"])\n    .round(1)\n)\n\nmass_summary\n\n\n\n\n\n\n\n\ncount\nmean\nmedian\n\n\nspecies\n\n\n\n\n\n\n\nAdelie\n151\n3700.7\n3700.0\n\n\nChinstrap\n68\n3733.1\n3700.0\n\n\nGentoo\n123\n5076.0\n5000.0"
+  },
+  {
+    "objectID": "posts/penguin-body-mass/index.html#findings-o",
+    "href": "posts/penguin-body-mass/index.html#findings-o",
+    "title": "Comparing penguin body mass across species",
+    "section": "Findings :O",
+    "text": "Findings :O\nGentoo penguins have the highest mean body mass in this sample: approximately 5,076 g, compared with 3,701 g for Adelie and 3,733 g for Chinstrap. The median follows the same pattern: 5,000 g for Gentoo and 3,700 g for both other species.\nThese are descriptive comparisons of the observed penguins. They do not establish that species alone explains the differences; this analysis does not account for factors such as sex, island, or year. Two observations with missing body mass were excluded."
+  },
+  {
+    "objectID": "posts/penguin-body-mass/index.html#visualize-body-mass",
+    "href": "posts/penguin-body-mass/index.html#visualize-body-mass",
+    "title": "Comparing penguin body mass across species",
+    "section": "Visualize body mass",
+    "text": "Visualize body mass\nThe boxplot compares the median, spread, and potential outliers of body mass across species.\n\nimport matplotlib.pyplot as plt\n\nspecies = [\"Adelie\", \"Chinstrap\", \"Gentoo\"]\nmass_by_species = [\n    penguins_clean.loc[\n        penguins_clean[\"species\"] == name, \"body_mass_g\"\n    ]\n    for name in species\n]\n\nfig, ax = plt.subplots(figsize=(7, 4))\nax.boxplot(mass_by_species, tick_labels=species)\nax.set_xlabel(\"Species\")\nax.set_ylabel(\"Body mass (g)\")\nfig.tight_layout()\nplt.show()\n\n\n\n\n\n\n\nFigure 1: Distribution of body mass by species, excluding two observations with missing body mass."
   },
   {
     "objectID": "about.html",
