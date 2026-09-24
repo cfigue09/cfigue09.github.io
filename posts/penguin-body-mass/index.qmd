@@ -1,0 +1,110 @@
+---
+title: "Comparing penguin body mass across species"
+author: "Cesar Figueroa"
+date: 2026-09-24
+jupyter: python3
+---
+
+## Question
+
+How does body mass vary across Adelie, Chinstrap, and Gentoo penguins?
+
+## Data source
+
+Data: [Palmer Penguins](https://allisonhorst.github.io/palmerpenguins/),
+collected by Dr. Kristen Gorman and Palmer Station Antarctica LTER.
+The data are available under a CC0 license.
+
+## Load the data
+
+```{python}
+#| label: load-data
+
+from palmerpenguins import load_penguins
+
+penguins = load_penguins()
+penguins.head()
+```
+
+## Check data quality
+
+Before comparing species, I check the dataset size and count missing
+values in the variables needed for this analysis.
+
+```{python}
+#| label: check-missing-values
+
+print(f"Number of rows: {penguins.shape[0]}")
+penguins[["species", "body_mass_g"]].isna().sum()
+```
+
+## Prepare the data
+
+Two observations have missing body mass (Na). I exclude these two rows from the
+comparison and keep observations with missing values in unrelated columns.
+
+```{python}
+#| label: remove-missing-mass
+
+penguins_clean = penguins.dropna(subset=["body_mass_g"]).copy()
+
+print(f"Original rows: {len(penguins)}")
+print(f"Rows retained: {len(penguins_clean)}")
+print(f"Rows removed: {len(penguins) - len(penguins_clean)}")
+```
+
+## Compare body mass across species
+
+I calculate the number of observations, mean, and median body mass
+for each species. Body mass is measured in grams.
+
+```{python}
+#| label: summarize-body-mass
+
+mass_summary = (
+    penguins_clean.groupby("species")["body_mass_g"]
+    .agg(["count", "mean", "median"])
+    .round(1)
+)
+
+mass_summary
+```
+
+## Findings :O
+
+Gentoo penguins have the highest mean body mass in this sample:
+approximately 5,076 g, compared with 3,701 g for Adelie and
+3,733 g for Chinstrap. The median follows the same pattern:
+5,000 g for Gentoo and 3,700 g for both other species.
+
+These are descriptive comparisons of the observed penguins.
+They do not establish that species alone explains the differences;
+this analysis does not account for factors such as sex, island, or year.
+Two observations with missing body mass were excluded.
+
+## Visualize body mass
+
+The boxplot compares the median, spread, and potential outliers
+of body mass across species.
+
+```{python}
+#| label: fig-body-mass
+#| fig-cap: "Distribution of body mass by species, excluding two observations with missing body mass."
+
+import matplotlib.pyplot as plt
+
+species = ["Adelie", "Chinstrap", "Gentoo"]
+mass_by_species = [
+    penguins_clean.loc[
+        penguins_clean["species"] == name, "body_mass_g"
+    ]
+    for name in species
+]
+
+fig, ax = plt.subplots(figsize=(7, 4))
+ax.boxplot(mass_by_species, tick_labels=species)
+ax.set_xlabel("Species")
+ax.set_ylabel("Body mass (g)")
+fig.tight_layout()
+plt.show()
+```
